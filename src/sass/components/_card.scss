@@ -1,0 +1,89 @@
+.cards__grid-container {
+    display: grid;
+    margin: 1rem 0;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 400px));
+    grid-template-rows: repeat(auto-fit, 650px);
+    grid-auto-rows: 650px;
+    justify-content: center;
+    .cards__card {
+        height: 100%;
+        border: 1px solid $color-slate600;
+        border-radius: 6px;
+        margin: 0 0.5rem;
+        .cards__card-img-container {
+            display: flex;
+            position: relative;
+            justify-content: center;
+            background-color: white;
+            border-top-right-radius: 6px;
+            border-top-left-radius: 6px;
+        }
+        img {
+            height: 250px;
+            width: 100%;
+        }
+        .cards__card-img-container:hover::after {
+            content: 'Ver más';
+            color: $color-light;
+            width: 100%;
+            height: 100%;
+            background-color: #475569a1;
+            position: absolute;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .cards__card-description {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            height: calc(100% - 250px);
+            h2 {
+                text-align: center;
+                span {
+                    color: $color-slate400;
+                    font-size: $size-lg;
+                }
+            }
+            p {
+                text-align: center;
+                color: $color-slate400;
+                padding: 0 0.5rem;
+            }
+            .cards__card-price {
+                font-size: $size-3xl;
+                text-align: center;
+            }
+            .cards__card-counter {
+                .cards__card-cart {
+                    color: $color-slate600;
+                    font-size: $size-3xl;
+                    border: 2px solid $color-slate600;
+                    border-radius: 6px;
+                    display: flex;
+                    align-items: center;
+                    margin: 1.5rem auto;
+                    padding: 0.5rem;
+                    transition: all 0.3s;
+                    &:hover {
+                        transform: scale(1.2);
+                        background-color: $color-slate600;
+                        border-color: $color-dark;
+                        color: $color-dark;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.cartUpdate-msg {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    background-color: $color-slate400;
+    color: $color-dark;
+    border-radius: 12px;
+    padding: 0.75rem;
+}
