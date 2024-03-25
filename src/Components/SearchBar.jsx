@@ -1,11 +1,18 @@
-import React from 'react'
+
 import { FaMagnifyingGlass } from 'react-icons/fa6'
 
-function SearchBar() {
+
+function SearchBar({value, action}) {
+
   return (
     <div className='searchBar'>
         <FaMagnifyingGlass size={20} />
-        <input type="text" placeholder='Buscar en la tienda'/>
+        <input 
+          type="search" 
+          placeholder='Buscar en la tienda' 
+          value={value} 
+          onChange={action}
+        />
     </div>
   )
 }

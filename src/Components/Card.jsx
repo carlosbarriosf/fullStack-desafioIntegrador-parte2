@@ -36,6 +36,7 @@ function Card({id, name, image, shortDesc, price}) {
             <div className='cards__card-description'>
                 <Link>
                     <h2>{name}</h2>
+                    
                 </Link>
                 <p>{shortDesc}</p>
                 <div className='cards__card-price'>

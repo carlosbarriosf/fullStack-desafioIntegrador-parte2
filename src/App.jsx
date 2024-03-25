@@ -1,15 +1,18 @@
 
 
 import CartProvider from "./Context/CartProvider";
+import ProductsProvider from "./Context/ProductsProvider";
 import RoutesApp from "./router/RoutesApp";
 
 
 function App() {
   return (
     <div>
-      <CartProvider>
-        <RoutesApp />
-      </CartProvider>
+      <ProductsProvider>
+        <CartProvider>
+          <RoutesApp />
+        </CartProvider>
+      </ProductsProvider>
     </div>
   );
 }

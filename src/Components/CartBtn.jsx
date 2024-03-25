@@ -8,14 +8,14 @@ function CartBtn({className}) {
     const { cartProductList } = useContext(CartContext)
 
     return (
-      <div className='header__cart-container'>
+      <div className='cart-container'>
           <Button
               type='button'
               // action={}
               className={className}
               icon={<FaCartShopping />}
           />
-          <div className='header__cart-count'>
+          <div className='cart__count'>
             {cartProductList.length > 0 ? cartProductList.length : undefined}
           </div>
       </div>

@@ -25,7 +25,7 @@ function Header() {
                     ulClassName='header__menu' 
                     linkClassName='header__link' 
                 />
-                <CartBtn className='header__cart-btn' />
+                <CartBtn className='cart__btn' />
             </div>
             <Button
                 type='button'

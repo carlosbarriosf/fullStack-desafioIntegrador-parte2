@@ -1,19 +1,10 @@
-import React, { useEffect, useState } from 'react'
-import { getProducts } from '../assets/api'
+
+
 import Card from './Card';
 
 
-function ProductWrapper() {
 
-    
-    
-    const [products, setProducts] = useState([]);
-
-    useEffect(() => {
-        getProducts().then(data => setProducts(data)).catch(err => console.log(err))
-    
-    }, [])
-    
+function ProductWrapper({products}) {
 
     return (
         <div className='cards__grid-container'>

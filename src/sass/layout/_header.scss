@@ -34,7 +34,8 @@
         display: none;
     }
     .header__bars {
-        position: relative;
+        position: fixed;
+        right: 5%;
         color: $color-slate600;
         width: $size-2xl;
         height: $size-2xl;
@@ -61,30 +62,6 @@
             display: flex;
             gap: 2.5rem;
             align-items: center;
-            .header__cart-container {
-                position: relative;
-                .header__cart-count {
-                    background-color: $color-success;
-                    border-radius: 50%;
-                    color: $color-light;
-                    font-weight: 500;
-                    width: 24px;
-                    text-align: center;
-                    position: absolute;
-                    top: -15px;
-                    right: -15px;
-                }
-                .header__cart-btn {
-                    color: $color-slate600;
-                    width: $size-2xl;
-                    height: $size-2xl;
-                    font-size: $size-xl;
-                    transition: color 0.3s;
-                    &:hover {
-                        color: $color-light;
-                    }
-                }
-            }
             .header__menu {
                 display: flex;
                 justify-content: flex-start;

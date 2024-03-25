@@ -6,7 +6,7 @@
     .counter__control {
         color: $color-slate400;
         cursor: pointer;
-        font-size: $size-xl;
+        font-size: $size-base;
         transition: all 0.3s;
         &:hover {
             color: $color-light;
@@ -16,8 +16,35 @@
     .counter__quantity {
         border: 1px solid $color-slate400;
         border-radius: 4px;
-        font-size: $size-lg;
+        font-size: $size-base;
         padding: 0.25rem 0.5rem;
         user-select: none;
     }
 }
+
+// /* xs */
+// @media (min-width: 475px) {}
+
+// /* sm */
+@media (min-width: 640px) {
+    .counter {
+        .counter__control {
+            font-size: $size-2xl;
+        }
+        .counter__quantity {
+            font-size: $size-xl;
+        }
+    }
+}
+
+// /* lg */
+// @media (min-width: 768px) {}
+
+// /* xl */
+// @media (min-width: 1024px) {}
+
+// /* 2xl */
+// @media (min-width: 1280px) {}
+
+// /* 3xl */
+// @media (min-width: 1536px) {}

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 import links from '../assets/links.json'
 
-function Navbar({ulClassName, linkClassName, action = undefined}) {
+function Navbar({ulClassName, linkClassName, action}) {
 
     return (
         <nav>

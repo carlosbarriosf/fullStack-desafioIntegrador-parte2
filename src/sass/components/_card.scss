@@ -41,24 +41,26 @@
             height: calc(100% - 250px);
             h2 {
                 text-align: center;
+                font-size: $size-lg;
                 span {
                     color: $color-slate400;
-                    font-size: $size-lg;
+                    font-size: $size-base;
                 }
             }
             p {
                 text-align: center;
                 color: $color-slate400;
                 padding: 0 0.5rem;
+                font-size: $size-sm;
             }
             .cards__card-price {
-                font-size: $size-3xl;
+                font-size: $size-xl;
                 text-align: center;
             }
             .cards__card-counter {
                 .cards__card-cart {
                     color: $color-slate600;
-                    font-size: $size-3xl;
+                    font-size: $size-xl;
                     border: 2px solid $color-slate600;
                     border-radius: 6px;
                     display: flex;
@@ -87,3 +89,43 @@
     border-radius: 12px;
     padding: 0.75rem;
 }
+
+
+// /* xs */
+// @media (min-width: 475px) {}
+
+// /* sm */
+@media (min-width: 640px) {
+    .cards__grid-container {
+        .cards__card {
+            .cards__card-description {
+                h2 {
+                    font-size: $size-2xl;
+                }
+                p {
+                    font-size: $size-base;
+                }
+                .cards__card-price {
+                    font-size: $size-2xl;
+                }
+                .cards__card-counter {
+                    .cards__card-cart {
+                        font-size: $size-2xl;
+                    }
+                }
+            }
+        }
+    }
+}
+
+// /* lg */
+// @media (min-width: 768px) {}
+
+// /* xl */
+// @media (min-width: 1024px) {}
+
+// /* 2xl */
+// @media (min-width: 1280px) {}
+
+// /* 3xl */
+// @media (min-width: 1536px) {}
