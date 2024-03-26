@@ -25,7 +25,6 @@
         .header__logo {
             width: $size-2xl;
             height: $size-2xl;
-            // margin-left: 1rem;
             display: block;
             cursor: pointer;
         }
@@ -34,8 +33,6 @@
         display: none;
     }
     .header__bars {
-        position: fixed;
-        right: 5%;
         color: $color-slate600;
         width: $size-2xl;
         height: $size-2xl;

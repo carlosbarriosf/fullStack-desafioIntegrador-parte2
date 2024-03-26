@@ -8,7 +8,7 @@ function ProductsProvider({children}) {
     const [products, setProducts] = useState([])
 
     useEffect(() => {
-        getProducts().then(data => setProducts(data)).catch(err => console.log(err))
+        getProducts('/products').then(data => setProducts(data)).catch(err => console.log(err))
     
     }, [])
 

@@ -32,7 +32,7 @@ function Card({id, name, image, shortDesc, price}) {
 
     return (
         <div className='cards__card'>
-            <Link><img src={image} alt={`Imagen ilustrativa del producto`} /></Link>
+            <Link to={`/detail/${id}`}><img src={image} alt={`Imagen ilustrativa del producto`} /></Link>
             <div className='cards__card-description'>
                 <Link>
                     <h2>{name}</h2>

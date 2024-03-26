@@ -6,6 +6,8 @@ import { ProductsContext } from '../Context/ProductsContext'
 function Home() {
 
     const { products } = useContext(ProductsContext)
+    //check if this context is really used, and if not, remove it and
+    //move the logic for the products array here
 
     const [searchInput, setSearchInput] = useState('')
     const [filteredProducts, setFilteredProducts] = useState(products)
