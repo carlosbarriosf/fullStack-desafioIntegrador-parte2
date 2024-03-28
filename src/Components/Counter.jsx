@@ -2,7 +2,7 @@
 import Button from './Button'
 import { FaMinus, FaPlus } from 'react-icons/fa6'
 
-function Counter({quantity, increment, decrement}) {
+function Counter({quantity, increment, decrement, counterControlStyle, counterQuantityStyle}) {
 
 
     return (
@@ -10,16 +10,16 @@ function Counter({quantity, increment, decrement}) {
           <Button
               type='button'
               action={decrement}
-              className='counter__control'
+              className={counterControlStyle}
               icon={<FaMinus />}
           />
-          <div className='counter__quantity'>
+          <div className={counterQuantityStyle}>
               {quantity}
           </div>
           <Button 
               type='button'
               action={increment}
-              className='counter__control'
+              className={counterControlStyle}
               icon={<FaPlus />}
           />
       </div>

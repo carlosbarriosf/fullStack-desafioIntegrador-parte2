@@ -8,9 +8,11 @@ import Button from './Button'
 import CartBtn from './CartBtn'
 
 
+
 function Header() {
 
     const [openMenu, setOpenMenu] = useState(false)
+
 
     useEffect(() => {
         if(openMenu) {
@@ -24,25 +26,32 @@ function Header() {
     return (
         <>
         <header className='header container'>
-            <div className="header__logo-container">
-                <Link to='/'><img className={`header__logo ${!openMenu ? 'opacityIncrease' : 'opacityDecrease'}`} src={logo} alt="Logo" /></Link>
-                <div className={`header__line ${!openMenu ? 'opacityIncrease' : 'opacityDecrease'}`}></div>
-                <Link to='/' className={`header__store ${!openMenu ? 'slideInRight' : undefined}`}>Tienda</Link>
+            <div className='header__firstRow'>
+                <div className="header__logo-container">
+                    <Button
+                        type='button'
+                        action={() => setOpenMenu(currentState => !currentState)}
+                        className='header__bars'
+                        icon={<FaBars />}
+                    />
+                    <Link to='/'><img className={`header__logo ${!openMenu ? 'opacityIncrease' : 'opacityDecrease'}`} src={logo} alt="Logo" /></Link>
+                    <div className={`header__line ${!openMenu ? 'opacityIncrease' : 'opacityDecrease'}`}></div>
+                    <Link to='/' className={`header__store ${!openMenu ? 'slideInRight' : undefined}`}>Tienda</Link>
+                </div>
+                <div style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '1rem'
+                        }}>
+                    <div className='header__navContainer'>
+                        <Navbar 
+                            ulClassName='header__menu' 
+                            linkClassName='header__link' 
+                        />
+                    </div>
+                    <CartBtn className='cart__btn' />
+                </div>
             </div>
-            <div className='header__navContainer'>
-                <Navbar 
-                    ulClassName='header__menu' 
-                    linkClassName='header__link' 
-                />
-                <CartBtn className='cart__btn' />
-            </div>
-            <Button
-                type='button'
-                action={() => setOpenMenu(currentState => !currentState)}
-                className='header__bars'
-                icon={<FaBars />}
-            />
-
         </header>
         {openMenu ? <MobileMenu action={() => setOpenMenu(currentState => !currentState)} /> : undefined}
         </>

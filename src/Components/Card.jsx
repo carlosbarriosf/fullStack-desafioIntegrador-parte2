@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { Link } from 'react-router-dom'
 import Button from './Button'
 import { FaCartPlus } from 'react-icons/fa6'
@@ -17,24 +17,20 @@ function Card({id, name, image, shortDesc, price}) {
       setQuantity(currentValue => currentValue > 0 ? currentValue - 1 : currentValue)
     }
 
-    const { addProductToCart, cartProductList } = useContext(CartContext)
+    const { addProductToCart } = useContext(CartContext)
 
     const [messageVisible, setMessageVisible] = useState(false)
 
     const [className, setClassName] = useState('opacityIncrease')
 
 
-    useEffect(() => {
-      console.log(cartProductList)
-    
-    }, [cartProductList])
     
 
     return (
         <div className='cards__card'>
             <Link to={`/detail/${id}`}><img src={image} alt={`Imagen ilustrativa del producto`} /></Link>
             <div className='cards__card-description'>
-                <Link>
+                <Link to={`/detail/${id}`}>
                     <h2>{name}</h2>
                     
                 </Link>
@@ -43,13 +39,20 @@ function Card({id, name, image, shortDesc, price}) {
                     {`$${price}`}
                 </div>
                 <div className="cards__card-counter">
-                    <Counter quantity={quantity} increment={increment} decrement={decrement} />
+                    <Counter 
+                        quantity={quantity} 
+                        increment={increment} 
+                        decrement={decrement} 
+                        counterControlStyle='counter__control'
+                        counterQuantityStyle='counter__quantity'
+                    />
                     <Button 
                         type='button'
                         action={() => {
                             addProductToCart({
                                 id,
                                 quantity,
+                                image,
                                 name,
                                 price,
                                 subtotal: Number(price) * quantity

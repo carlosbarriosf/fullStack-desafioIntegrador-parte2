@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import SearchBar from '../Components/SearchBar'
 import ProductWrapper from '../Components/ProductWrapper'
 import { ProductsContext } from '../Context/ProductsContext'
+import CartBtn from '../Components/CartBtn'
 
 function Home() {
 
@@ -11,7 +12,6 @@ function Home() {
 
     const [searchInput, setSearchInput] = useState('')
     const [filteredProducts, setFilteredProducts] = useState(products)
-    console.log(products)
 
     useEffect(() => {
       setFilteredProducts(products.filter(product => product.name.toLowerCase().includes(searchInput.toLowerCase())))
@@ -19,7 +19,10 @@ function Home() {
 
   return (
     <div className='container'>
-      <SearchBar value={searchInput} action={(e) => setSearchInput(e.target.value)} />
+      <div className='home__controls'>
+        <SearchBar value={searchInput} action={(e) => setSearchInput(e.target.value)} />
+        {/* <CartBtn className='cart__btn' /> */}
+      </div>
       <ProductWrapper products={filteredProducts} />
     </div>
   )
