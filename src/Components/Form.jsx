@@ -1,7 +1,7 @@
 import React from 'react'
 import Button from './Button';
 
-function Form({onSubmit, className, children, title, reset}) {
+function Form({onSubmit, className, children, title, reset, loading}) {
   return (
     <form 
         onSubmit={e => {
@@ -16,6 +16,7 @@ function Form({onSubmit, className, children, title, reset}) {
             <Button 
                 type='submit'
                 label='Enviar'
+                disabled={loading}
             />
             <Button
                 type='reset'

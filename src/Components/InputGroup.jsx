@@ -33,6 +33,9 @@ function InputGroup({
             <textarea
                 name={id}
                 id={id}
+                value={values[id]}
+                onChange={onChange}
+                required={required}
             >
             </textarea>
             :     

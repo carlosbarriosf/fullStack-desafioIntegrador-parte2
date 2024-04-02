@@ -8,3 +8,8 @@ export const getProducts = async (data) => {
     const resp = await axiosInstance.get(data);
     return resp.data;
 }
+
+export const postComment = async (body) => {
+    const resp = await axiosInstance.post('/messages', body);
+    return resp.data
+}
