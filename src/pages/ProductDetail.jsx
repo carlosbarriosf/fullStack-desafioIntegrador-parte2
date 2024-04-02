@@ -70,6 +70,7 @@ function ProductDetail() {
                                 addProductToCart({
                                     id: product.id,
                                     quantity,
+                                    image: product.image,
                                     name: product.name,
                                     price: product.price,
                                     subtotal: Number(product.price) * quantity
