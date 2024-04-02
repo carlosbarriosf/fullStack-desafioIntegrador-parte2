@@ -20,6 +20,19 @@ function CartBtn({className}) {
       }
     }
 
+    const clickOutsideModal = e => {
+      const modal = document.querySelector('[data-modal]');
+      const modalDimensions = modal.getBoundingClientRect();
+      if(
+        e.clientX < modalDimensions.left ||
+        e.clientX > modalDimensions.right ||
+        e.clientY < modalDimensions.top ||
+        e.clientY > modalDimensions.bottom
+      ) {
+        modal.close()
+      }
+    }
+
     useEffect(() => {
       openModal(isOpen)
     }, [isOpen])
@@ -37,7 +50,11 @@ function CartBtn({className}) {
           <div className='cart__count'>
             {cartProductList.length > 0 ? cartProductList.length : undefined}
           </div>
-          <dialog data-modal className='cart__modal'>
+          <dialog 
+            data-modal 
+            className='cart__modal'
+            onClick={(e) => clickOutsideModal(e) }
+          >
               <Button
                 type='button'
                 action={() => setIsOpen(currentValue => !currentValue)}
