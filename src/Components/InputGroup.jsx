@@ -11,20 +11,25 @@ function InputGroup({
     required = false,
     className = 'form__row',
     min = undefined,
-    max = undefined
+    max = undefined,
+
 }) {
   
-    const [isValid, setIsValid] = useState()
+    const [isValid, setIsValid] = useState(undefined)
     const [errorMsg, setErrorMsg] = useState('')
+
 
     useEffect(() => {
         // console.log('isValidChangedTo:',isValid)
-        if(!isValid && values[id] !== "") {
+        if(!isValid && isValid !== undefined) {
             setErrorMsg(errorMessage)
         } else {
             setErrorMsg('')
         }
-    }, [isValid])
+        console.log(isValid)
+    }, [isValid, errorMessage])
+
+
 
     return (
     <div className={className}>
@@ -38,7 +43,7 @@ function InputGroup({
                 required={required}
             >
             </textarea>
-            :     
+        :
             <input 
                 type={type} 
                 name={id} 
@@ -46,7 +51,9 @@ function InputGroup({
                 onChange={onChange}
                 value={values[id]}
                 onBlur={() => {
-                    setIsValid(validation)                   
+                    if(values[id]) {
+                        setIsValid(validation)
+                    }
                 }}
                 required={required}
                 min={min}

@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
 import  Form  from '../Components/Form'
 import { useForm } from '../hooks/useForm'
 import InputGroup from '../Components/InputGroup'
 
 import { validateAge, validateStgLength, validateString } from '../assets/validations'
+import { postProduct } from '../assets/api'
 
 
 
@@ -16,15 +17,22 @@ const INITIAL_STATE = {
     category: "",
     shortDesc: "",
     longDesc: "",
-    freeShip: false,
+    freeShipping: false,
     ageFrom: "",
     ageTo: "",
-    photo: ""
+    image: ""
 }
 
 function Alta() {
     
     const { values, handleInputChange, resetForm} = useForm(INITIAL_STATE)
+
+
+    const [loadingForm, setLoadingForm] = useState(false)
+
+    const [messageVisible, setMessageVisible] = useState(false)
+
+    const [className, setClassName] = useState('opacityIncrease')
     
       const inputProps = {
         name: {
@@ -73,12 +81,13 @@ function Alta() {
         longDesc: {
           type: 'textarea',
           label: 'Descripción Larga',
-          required: true,
+          // required: true,
           validation: true
         },
-        freeShip: {
+        freeShipping: {
           label: 'Envío sin cargo',
           type: 'checkbox',
+          // checked: isChecked,
           className: 'form__row alta__checkbox',
           validation: true
         },
@@ -98,7 +107,7 @@ function Alta() {
           validation: validateAge(values['ageFrom'], values['ageTo']),
           errorMessage: 'La edad hasta no puede ser menor que la edad desde'
         },
-        photo: {
+        image: {
           type: 'file',
           label: 'Foto *',
           required: true,
@@ -109,36 +118,57 @@ function Alta() {
       
 
     return (
-      <Form
-        onSubmit={() => {
-          console.log(values)
-          console.log(inputProps['name'].validation)
-          const validArray = Object.entries(inputProps).map(([key, props]) => {
-            return (props.validation)
-          })
-          console.log(validArray)
-          if(validArray.indexOf(false) === -1) {
-            console.log('Correcto')
-          } else {
-            console.log('incorrecto')
-          }
-        }}
-        className='form container'
-        title='Alta de Productos'
-        reset={resetForm}
-      >
-        {Object.entries(inputProps).map(([key, props]) => {
-          return (
-            <InputGroup
-              key={key}
-              id={key}
-              onChange={handleInputChange}
-              values={values}
-              {...props}
-            />
-          )
-        })}
-      </Form>
+      <>
+        <Form
+          onSubmit={() => {
+            console.log(inputProps['name'].validation)
+            const validArray = Object.entries(inputProps).map(([key, props]) => {
+              return (props.validation)
+            })
+            console.log(validArray)
+            if(validArray.indexOf(false) === -1) {
+              console.log(values)
+              setLoadingForm(true)
+              postProduct(values)
+                .then(data => {
+                  console.log(data)
+                  setMessageVisible(true)
+                  setTimeout(() => {
+                      setClassName('opacityDecrease')
+                  }, 3000);
+                  setTimeout(() => {
+                      setMessageVisible(false)
+                      setClassName('opacityIncrease')
+                  }, 3300);
+                })
+                .catch(err => console.error(err))
+                .finally(() => {
+                  setLoadingForm(false)
+                  resetForm()
+                })
+            } else {
+              alert("El producto no se ha guardado porque hay campos con errores")
+            }
+          }}
+          className='form container'
+          title='Alta de Productos'
+          reset={resetForm}
+          loading={loadingForm}
+        >
+          {Object.entries(inputProps).map(([key, props]) => {
+            return (
+              <InputGroup
+                key={key}
+                id={key}
+                onChange={handleInputChange}
+                values={values}
+                {...props}
+              />
+            )
+          })}
+        </Form>
+        {messageVisible ? <div className={`emergent-msg ${className}`}>Producto cargado con éxito</div> : undefined}
+      </>
     )
 }
 
