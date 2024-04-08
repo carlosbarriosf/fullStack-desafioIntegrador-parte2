@@ -11,28 +11,13 @@
         border: 1px solid $color-slate600;
         border-radius: 6px;
         margin: 0 0.5rem;
-        .cards__card-img-container {
-            display: flex;
-            position: relative;
-            justify-content: center;
-            background-color: white;
-            border-top-right-radius: 6px;
-            border-top-left-radius: 6px;
-        }
-        img {
+        .cards__card__imageContainer {
             height: 250px;
             width: 100%;
-        }
-        .cards__card-img-container:hover::after {
-            content: 'Ver más';
-            color: $color-light;
-            width: 100%;
-            height: 100%;
-            background-color: #475569a1;
-            position: absolute;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            img {
+                height: 250px;
+                width: 100%;
+            }
         }
         .cards__card-description {
             display: flex;

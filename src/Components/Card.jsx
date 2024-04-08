@@ -28,7 +28,9 @@ function Card({id, name, image, shortDesc, price}) {
 
     return (
         <div className='cards__card'>
-            <Link to={`/detail/${id}`}><img src={image} alt={`Imagen ilustrativa del producto`} /></Link>
+            <div className='cards__card__imageContainer'>
+                <Link to={`/detail/${id}`}><img src={image} alt={`Imagen ilustrativa del producto`} /></Link>
+            </div>
             <div className='cards__card-description'>
                 <Link to={`/detail/${id}`}>
                     <h2>{name}</h2>
