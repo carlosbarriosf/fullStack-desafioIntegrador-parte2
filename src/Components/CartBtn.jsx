@@ -55,24 +55,43 @@ function CartBtn({className}) {
             className='cart__modal'
             onClick={(e) => clickOutsideModal(e) }
           >
-              <Button
-                type='button'
-                action={() => setIsOpen(currentValue => !currentValue)}
-                className='cart__closeBtn'
-                label='&times;'
-              />
+            <Button
+              type='button'
+              action={() => setIsOpen(currentValue => !currentValue)}
+              className='cart__closeBtn'
+              label='&times;'
+            />
+            {cartProductList.length === 0 ?
+              <h2>Su carrito está vacío</h2> 
+              :
               <h2 className='cart__title'>Su orden:</h2>
-              {cartProductList.map(product => {
-                return (
-                  <CartItem 
-                    key={product.id}
-                    {...product}
-                  />
-                )
-              })}
+            }
+            {cartProductList.map(product => {
+              return (
+                <CartItem 
+                  key={product.id}
+                  {...product}
+                />
+              )
+            })}
+            {
+              cartProductList.length > 0 ?
+              <h3>
+                Total a pagar: ${cartProductList.map(product => {
+                  return product.subtotal
+                })
+                  .reduce((accumulator, currentValue) => {
+                    console.log(accumulator + currentValue)
+                    return accumulator + currentValue
+                  })}
+              </h3>
+              :
+              undefined
+            }
           </dialog>
       </div>
     )
 }
+
 
 export default CartBtn
