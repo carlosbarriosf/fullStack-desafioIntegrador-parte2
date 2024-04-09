@@ -4,6 +4,7 @@ import { useForm } from '../hooks/useForm'
 import InputGroup from '../Components/InputGroup'
 import { validateString } from '../assets/validations'
 import { postComment } from '../assets/api'
+import Footer from '../Components/Footer'
 
 
 const INITIAL_STATE = {
@@ -45,7 +46,7 @@ function Contactanos() {
   }
 
   return (
-    <>
+    <div className='container home'>
       <Form
         onSubmit={() => {
           const validArray = Object.entries(inputProps).map(([key, props]) => {
@@ -92,7 +93,8 @@ function Contactanos() {
           })}
         </Form>
         {messageVisible ? <div className={`emergent-msg ${className}`}>Comentario enviado con éxito</div> : undefined}
-    </>
+        <Footer />
+    </div>
     )
 }
 

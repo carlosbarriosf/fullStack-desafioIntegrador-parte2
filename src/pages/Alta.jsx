@@ -5,6 +5,7 @@ import InputGroup from '../Components/InputGroup'
 
 import { validateAge, validateStgLength, validateString } from '../assets/validations'
 import { postProduct } from '../assets/api'
+import Footer from '../Components/Footer'
 
 
 
@@ -118,7 +119,7 @@ function Alta() {
       
 
     return (
-      <>
+      <div className='container home'>
         <Form
           onSubmit={() => {
             console.log(inputProps['name'].validation)
@@ -168,7 +169,8 @@ function Alta() {
           })}
         </Form>
         {messageVisible ? <div className={`emergent-msg ${className}`}>Producto cargado con éxito</div> : undefined}
-      </>
+        <Footer />
+      </div>
     )
 }
 

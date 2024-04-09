@@ -1,9 +1,10 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import Footer from '../Components/Footer'
 
 function Nosotros() {
   return (
-    <div class="container">
+    <div class="container home">
       <section class="nosotros">
           <div class="nosotros__banner">
               <h1>Juguetería Cósmica</h1>
@@ -18,7 +19,8 @@ function Nosotros() {
               enorgullece ofrecer una cuidadosa <Link to="/">selección de figuras</Link> que capturan la esencia de tus héroes
               favoritos, desde icónicos superhéroes hasta entrañables personajes de anime.
           </p>
-      </section>
+        </section>
+        <Footer />
       </div>
   )
 }
