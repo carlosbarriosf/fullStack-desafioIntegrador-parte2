@@ -2,7 +2,6 @@ import React, { useContext, useEffect, useState } from 'react'
 import SearchBar from '../Components/SearchBar'
 import ProductWrapper from '../Components/ProductWrapper'
 import { ProductsContext } from '../Context/ProductsContext'
-import CartBtn from '../Components/CartBtn'
 import Footer from '../Components/Footer'
 
 function Home() {
@@ -22,7 +21,6 @@ function Home() {
     <div className='container home'>
       <div className='home__controls'>
         <SearchBar value={searchInput} action={(e) => setSearchInput(e.target.value)} />
-        {/* <CartBtn className='cart__btn' /> */}
       </div>
       <ProductWrapper products={filteredProducts} />
       <Footer />
