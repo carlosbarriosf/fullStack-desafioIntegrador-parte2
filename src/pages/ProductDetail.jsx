@@ -5,6 +5,7 @@ import { getProducts } from '../assets/api'
 import Button from '../Components/Button'
 import { CartContext } from '../Context/CartContext'
 import Counter from '../Components/Counter'
+import Footer from '../Components/Footer'
 
 
 function ProductDetail() {
@@ -33,7 +34,7 @@ function ProductDetail() {
     const { addProductToCart } = useContext(CartContext)
 
     return (
-        <div className='container'>
+        <div className='container home'>
             <Link to='/' className='goBackBtn'>
                 Volver a la tienda
             </Link>
@@ -93,6 +94,7 @@ function ProductDetail() {
                 </div>
             </div>
             {messageVisible ? <div className={`cartUpdate-msg ${className}`}>{`Se añadieron ${quantity} ${product.name} al carrito`}</div> : undefined}
+            <Footer />
         </div>
     )
 }
