@@ -6,7 +6,7 @@ const axiosInstance = axios.create({
 
 export const getProducts = async (data) => {
     const resp = await axiosInstance.get(data);
-    console.log(resp.data.products)
+    console.log(resp)
     return resp.data.products;
 }
 
