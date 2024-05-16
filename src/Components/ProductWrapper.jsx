@@ -8,7 +8,7 @@ function ProductWrapper({products}) {
 
     return (
         <div className='cards__grid-container'>
-            {products.map( product => {
+            {products && products.map( product => {
                 return (            
                     <Card 
                         key={product._id}
