@@ -13,16 +13,16 @@ function Home() {
     const [searchInput, setSearchInput] = useState('')
     const [filteredProducts, setFilteredProducts] = useState(products)
 
-    // useEffect(() => {
-    //   setFilteredProducts(products.filter(product => product.name.toLowerCase().includes(searchInput.toLowerCase())))
-    // }, [searchInput, products])
+    useEffect(() => {
+      setFilteredProducts(products.filter(product => product.name.toLowerCase().includes(searchInput.toLowerCase())))
+    }, [searchInput, products])
 
   return (
     <div className='container home'>
       <div className='home__controls'>
         <SearchBar value={searchInput} action={(e) => setSearchInput(e.target.value)} />
       </div>
-      <ProductWrapper products={products} />
+      <ProductWrapper products={filteredProducts} />
       <Footer />
     </div>
   )
