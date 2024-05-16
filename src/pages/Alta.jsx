@@ -21,7 +21,8 @@ const INITIAL_STATE = {
     freeShipping: false,
     ageFrom: "",
     ageTo: "",
-    image: ""
+    image: "",
+    imageFile: {}
 }
 
 function Alta() {
@@ -40,7 +41,7 @@ function Alta() {
           type: 'text',
           label: 'Nombre del producto *',
           required: true,
-          validation : validateString(values['name'], /^[A-Za-z ]{3,30}$/),
+          validation : validateString(values['name'], /^[A-Za-zñ ]{3,30}$/),
           errorMessage: 'El campo debe contener entre 3 y 30 caracteres alfabéticos'
         },
         price: {
@@ -112,7 +113,8 @@ function Alta() {
           type: 'file',
           label: 'Foto *',
           required: true,
-          validation: true
+          validation: true,
+          accept: "image/png, image/gif, image/jpeg"
         }
       }
 
@@ -127,8 +129,8 @@ function Alta() {
               return (props.validation)
             })
             console.log(validArray)
+            console.log(values)
             if(validArray.indexOf(false) === -1) {
-              console.log(values)
               setLoadingForm(true)
               postProduct(values)
                 .then(data => {

@@ -5,7 +5,7 @@ import { FaCartPlus } from 'react-icons/fa6'
 import Counter from './Counter'
 import { CartContext } from '../Context/CartContext'
 
-function Card({id, name, image, shortDesc, price}) {
+function Card({_id, name, image, shortDesc, price}) {
 
     const [quantity, setQuantity] = useState(0)
 
@@ -29,10 +29,10 @@ function Card({id, name, image, shortDesc, price}) {
     return (
         <div className='cards__card'>
             <div className='cards__card__imageContainer'>
-                <Link to={`/detail/${id}`}><img src={image} alt={`Imagen ilustrativa del producto`} /></Link>
+                <Link to={`/detail/${_id}`}><img src={image} alt={`Imagen ilustrativa del producto`} /></Link>
             </div>
             <div className='cards__card-description'>
-                <Link to={`/detail/${id}`}>
+                <Link to={`/detail/${_id}`}>
                     <h2>{name}</h2>
                     
                 </Link>
@@ -52,7 +52,7 @@ function Card({id, name, image, shortDesc, price}) {
                         type='button'
                         action={() => {
                             addProductToCart({
-                                id,
+                                _id,
                                 quantity,
                                 image,
                                 name,

@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 
-import { getProducts } from '../assets/api'
+import { getProductsById } from '../assets/api'
 import Button from '../Components/Button'
 import { CartContext } from '../Context/CartContext'
 import Counter from '../Components/Counter'
@@ -26,7 +26,8 @@ function ProductDetail() {
 
 
     useEffect(() => {
-        getProducts(`/products/${id}`).then(data => setProduct(data)).catch(err => console.log(err))
+        console.log(id)
+        getProductsById(`/products/${id}`).then(data => setProduct(data)).catch(err => console.log(err))
     }, [id])
 
     console.log(product)
@@ -69,7 +70,7 @@ function ProductDetail() {
                             type='button'
                             action={() => {
                                 addProductToCart({
-                                    id: product.id,
+                                    _id: product._id,
                                     quantity,
                                     image: product.image,
                                     name: product.name,

@@ -12,7 +12,7 @@ function InputGroup({
     className = 'form__row',
     min = undefined,
     max = undefined,
-
+    ...props
 }) {
   
     const [isValid, setIsValid] = useState(undefined)
@@ -58,6 +58,7 @@ function InputGroup({
                 required={required}
                 min={min}
                 max={max}
+                {...props}
             />
         }
         <p>{errorMsg}</p>

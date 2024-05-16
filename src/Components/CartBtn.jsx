@@ -14,6 +14,7 @@ function CartBtn({className}) {
     function openModal (isOpen) {
       const modal = document.querySelector('[data-modal]');
       if(isOpen) {
+        console.log(cartProductList)
         modal.showModal();
       } else {
         modal.close()
@@ -69,7 +70,7 @@ function CartBtn({className}) {
             {cartProductList.map(product => {
               return (
                 <CartItem 
-                  key={product.id}
+                  key={product._id}
                   {...product}
                 />
               )

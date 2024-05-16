@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 function Footer() {
   return (
-    <footer class="footer">
+    <footer className="footer">
         <p>
             2024, Juguetería Cósmica. Todos los derechos reservados.
         </p>

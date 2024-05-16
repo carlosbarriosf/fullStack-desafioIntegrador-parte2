@@ -4,7 +4,7 @@ import Counter from './Counter'
 import { CartContext } from '../Context/CartContext'
 import Button from './Button'
 
-function CartItem({id, name, image, quantity, price, subtotal}) {
+function CartItem({_id, name, image, quantity, price, subtotal}) {
 
     const { modifyProductQuantity, removeProductFromCart } = useContext(CartContext)
 
@@ -34,12 +34,12 @@ function CartItem({id, name, image, quantity, price, subtotal}) {
                         quantity={updatedQuantity}
                         increment={() => {
                             increment()
-                            modifyProductQuantity(id, updatedQuantity + 1)
+                            modifyProductQuantity(_id, updatedQuantity + 1)
                         }}
                         decrement={() => {
                             decrement();
                             if (updatedQuantity > 1) {
-                                modifyProductQuantity(id, updatedQuantity - 1)
+                                modifyProductQuantity(_id, updatedQuantity - 1)
                             }
                         }}
                         counterControlStyle='cart__item-quantityControl'
@@ -50,7 +50,7 @@ function CartItem({id, name, image, quantity, price, subtotal}) {
                 <p className='cart__item-subtotal'>{`Subtotal: $${subtotal}`}</p>
                 <Button 
                     type='button'
-                    action={() => {removeProductFromCart(id)}}
+                    action={() => {removeProductFromCart(_id)}}
                     className='cart__item-deleteBtn'
                     icon={<RiDeleteBin6Line />}
                 />

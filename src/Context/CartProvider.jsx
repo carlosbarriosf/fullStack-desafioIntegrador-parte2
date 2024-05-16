@@ -15,10 +15,10 @@ function CartProvider({children}) {
 
     const addProductToCart = product => {
         if (product.quantity > 0) {
-            const existentProduct = cartProductList.find(existentProduct => existentProduct.id === product.id)
+            const existentProduct = cartProductList.find(existentProduct => existentProduct._id === product._id)
             if (existentProduct) {
                 setCartProductList(cartProductList.map(existentProduct => {
-                    if(existentProduct.id === product.id) {
+                    if(existentProduct._id === product._id) {
                         existentProduct.quantity = existentProduct.quantity + product.quantity
                         existentProduct.subtotal = existentProduct.quantity * Number(existentProduct.price)
                     }
@@ -30,11 +30,11 @@ function CartProvider({children}) {
         }
     };
 
-    const modifyProductQuantity = (id, quantity) => {
-        const productToModify = cartProductList.find(existentProduct => existentProduct.id === id)
+    const modifyProductQuantity = (_id, quantity) => {
+        const productToModify = cartProductList.find(existentProduct => existentProduct._id === _id)
         if(productToModify) {
             setCartProductList(cartProductList.map(existentProduct => {
-                if (existentProduct.id === id) {
+                if (existentProduct._id === _id) {
                     return {
                         ...existentProduct,
                         quantity: quantity,
@@ -47,7 +47,7 @@ function CartProvider({children}) {
     }
 
 
-    const removeProductFromCart = id => setCartProductList(cartProductList.filter(product => product.id !== id));
+    const removeProductFromCart = _id => setCartProductList(cartProductList.filter(product => product._id !== _id));
 
 
     return (

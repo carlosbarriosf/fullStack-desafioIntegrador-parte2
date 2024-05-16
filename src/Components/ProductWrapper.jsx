@@ -11,7 +11,7 @@ function ProductWrapper({products}) {
             {products.map( product => {
                 return (            
                     <Card 
-                        key={product.id}
+                        key={product._id}
                         {...product} 
                     />   
                 )
