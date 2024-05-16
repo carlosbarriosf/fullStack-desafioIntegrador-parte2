@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const axiosInstance = axios.create({
-    baseURL: process.env.REACT_APP_BASE_URL_API || 'https://fullstack-desafiointegrador-parte3.onrender.com'
+    baseURL: process.env.REACT_APP_BASE_URL_API || 'https://fullstack-desafiointegrador-parte3.onrender.com/api'
 })
 
 export const getProducts = async (data) => {
