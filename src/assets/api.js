@@ -6,8 +6,6 @@ const axiosInstance = axios.create({
 
 export const getProducts = async (data) => {
     const resp = await axiosInstance.get(data);
-    console.log(resp)
-    console.log(process.env.REACT_APP_BASE_URL_API)
     return resp.data.products;
 }
 
@@ -32,4 +30,19 @@ export const postProduct = async (body) => {
           }
     });
     return resp.data
+}
+
+export const postCart = async (body) => {
+    const resp = await axiosInstance.post('/cart', body);
+    return resp.data.populatedCart;
+}
+
+export const getCartById = async (id) => {
+    const resp = await axiosInstance.get(`/cart/get/${id}`);
+    return resp;
+}
+
+export const updateCartById = async (id, body) => {
+    const resp = await axiosInstance.put(`/cart/update/${id}`, body);
+    return resp.data.updatedCart;
 }

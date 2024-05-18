@@ -1,5 +1,6 @@
 .home {
     padding-bottom: 78px;
+    min-height: calc(100vh - 1.5*78px);
 }
 
 .home__controls {

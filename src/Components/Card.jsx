@@ -52,12 +52,10 @@ function Card({_id, name, image, shortDesc, price}) {
                         type='button'
                         action={() => {
                             addProductToCart({
-                                _id,
-                                quantity,
-                                image,
-                                name,
-                                price,
-                                subtotal: Number(price) * quantity
+                                items: [{
+                                    quantity,
+                                    product: _id
+                                }]
                             })
                             if (quantity > 0) {
                                 setMessageVisible(true)

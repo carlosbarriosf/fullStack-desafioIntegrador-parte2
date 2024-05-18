@@ -3,26 +3,30 @@ import Button from './Button'
 import { FaCartShopping } from 'react-icons/fa6'
 import { CartContext } from '../Context/CartContext'
 import CartItem from './CartItem'
+import { FaCheckCircle } from 'react-icons/fa'
 
 
 function CartBtn({className}) {
 
-    const { cartProductList } = useContext(CartContext)
+    const { cartProductList, purchaseCart, cartId } = useContext(CartContext)
 
     const [isOpen, setIsOpen] = useState(false)
 
-    function openModal (isOpen) {
-      const modal = document.querySelector('[data-modal]');
-      if(isOpen) {
-        console.log(cartProductList)
-        modal.showModal();
-      } else {
-        modal.close()
+    const [purchaseCompleted, setPurchaseCompleted] = useState(false)
+
+    
+    const cartModal = document.querySelector('[data-modal]');
+    const purchaseModal = document.querySelector('[data-purchase-modal]');
+    function openModal (isOpen, modal) {
+      if(modal) {
+        if(isOpen) {
+          modal.showModal();
+        } else {
+          modal.close()
+        }
       }
     }
-
-    const clickOutsideModal = e => {
-      const modal = document.querySelector('[data-modal]');
+    const clickOutsideModal = (e, modal) => {
       const modalDimensions = modal.getBoundingClientRect();
       if(
         e.clientX < modalDimensions.left ||
@@ -31,12 +35,24 @@ function CartBtn({className}) {
         e.clientY > modalDimensions.bottom
       ) {
         modal.close()
+        setIsOpen(false)
+        setPurchaseCompleted(false)
       }
     }
 
     useEffect(() => {
-      openModal(isOpen)
+      openModal(isOpen, cartModal)
     }, [isOpen])
+
+    useEffect(() => {
+      openModal(purchaseCompleted, purchaseModal)
+    }, [purchaseCompleted])
+
+    useEffect(() => {
+      console.log(cartProductList)
+    }, [cartProductList])
+
+    
 
     return (
       <div className='cart-container'>
@@ -54,7 +70,7 @@ function CartBtn({className}) {
           <dialog 
             data-modal 
             className='cart__modal'
-            onClick={(e) => clickOutsideModal(e) }
+            onClick={(e) => clickOutsideModal(e, cartModal) }
           >
             <Button
               type='button'
@@ -67,28 +83,63 @@ function CartBtn({className}) {
               :
               <h2 className='cart__title'>Su orden:</h2>
             }
-            {cartProductList.map(product => {
+            {cartProductList.map(item => {
               return (
                 <CartItem 
-                  key={product._id}
-                  {...product}
+                  key={item._id}
+                  quantity={item.quantity}
+                  {...item.product}
                 />
               )
             })}
             {
               cartProductList.length > 0 ?
-              <h3>
-                Total a pagar: ${cartProductList.map(product => {
-                  return product.subtotal
-                })
-                  .reduce((accumulator, currentValue) => {
-                    console.log(accumulator + currentValue)
-                    return accumulator + currentValue
-                  })}
-              </h3>
+              <>
+                <h3>
+                  Total a pagar: ${cartProductList.map(item => {
+                    return item.quantity * item.product.price
+                  })
+                    .reduce((accumulator, currentValue) => {
+                      console.log(accumulator + currentValue)
+                      return accumulator + currentValue
+                    })}
+                </h3>
+                <div className='cart__purchaseBtn-container'>
+                  <Button
+                    type='button'
+                    action={() => {
+                      console.log(cartProductList)
+                      purchaseCart(cartId)
+                      setIsOpen(false)
+                      setPurchaseCompleted(true)
+                    }}
+                    label='Comprar'
+                    className='cart__purchaseBtn'
+                  />
+                </div>
+              </>
+              
               :
               undefined
             }
+          </dialog>
+          <dialog
+            data-purchase-modal
+            className='purchaseModal'
+            onClick={(e) => {
+              clickOutsideModal(e,purchaseModal)
+            } }
+          >
+            <Button
+              type='button'
+              action={() => setPurchaseCompleted(currentValue => !currentValue)}
+              className='cart__closeBtn'
+              label='&times;'
+            />
+            Compra realizada con éxito!
+            <div className='check'>
+              <FaCheckCircle size={50}/>
+            </div>
           </dialog>
       </div>
     )

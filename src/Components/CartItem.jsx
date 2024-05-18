@@ -4,9 +4,9 @@ import Counter from './Counter'
 import { CartContext } from '../Context/CartContext'
 import Button from './Button'
 
-function CartItem({_id, name, image, quantity, price, subtotal}) {
+function CartItem({_id, name, image, quantity, price}) {
 
-    const { modifyProductQuantity, removeProductFromCart } = useContext(CartContext)
+    const { modifyProductQuantity, removeProductFromCart, cartId } = useContext(CartContext)
 
     const [updatedQuantity, setUpdatedQuantity] = useState(quantity)
 
@@ -47,10 +47,16 @@ function CartItem({_id, name, image, quantity, price, subtotal}) {
                     />
                 </div>
                 <p className='cart__item-price'>{`Precio por unidad: $${price}`}</p>
-                <p className='cart__item-subtotal'>{`Subtotal: $${subtotal}`}</p>
+                <p className='cart__item-subtotal'>{`Subtotal: $${quantity * price}`}</p>
                 <Button 
                     type='button'
-                    action={() => {removeProductFromCart(_id)}}
+                    action={() => {removeProductFromCart(
+                        cartId,
+                        {items: [{
+                            quantity: 0,
+                            product: _id
+                        }]}
+                    )}}
                     className='cart__item-deleteBtn'
                     icon={<RiDeleteBin6Line />}
                 />

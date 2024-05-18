@@ -5,8 +5,6 @@ import Card from './Card';
 
 
 function ProductWrapper({products}) {
-    console.log(products)
-
     return (
         <div className='cards__grid-container'>
             {products && products.map( product => {
