@@ -13,10 +13,13 @@ function CartItem({_id, name, image, quantity, price}) {
 
     const increment = () => {
         setUpdatedQuantity(currentValue => currentValue + 1)
+        // console.log(updatedQuantity +1)
     }
   
     const decrement = () => {
         setUpdatedQuantity(currentValue => currentValue > 1 ? currentValue - 1 : currentValue)
+        // console.log(updatedQuantity - 1)
+        
     }
 
 
@@ -34,13 +37,13 @@ function CartItem({_id, name, image, quantity, price}) {
                         quantity={updatedQuantity}
                         increment={() => {
                             increment()
-                            modifyProductQuantity(_id, updatedQuantity + 1 - quantity)
+                            // modifyProductQuantity(_id, updatedQuantity + 1 - quantity)
                         }}
                         decrement={() => {
                             decrement();
-                            if (updatedQuantity > 1) {
-                                modifyProductQuantity(_id, updatedQuantity - 1 - quantity)
-                            }
+                            // if (updatedQuantity > 1) {
+                            //     modifyProductQuantity(_id, updatedQuantity - 1 - quantity)
+                            // }
                         }}
                         counterControlStyle='cart__item-quantityControl'
                         counterQuantityStyle='cart__item-quantity'
@@ -60,7 +63,18 @@ function CartItem({_id, name, image, quantity, price}) {
                     className='cart__item-deleteBtn'
                     icon={<RiDeleteBin6Line />}
                 />
-                
+                <Button
+                    type='button'
+                    action={() => {
+                        console.log((updatedQuantity - quantity) !== 0)
+                        if((updatedQuantity - quantity) !== 0) {
+                            modifyProductQuantity(_id, updatedQuantity - quantity)
+                        }
+                    }}
+                    className='cart__item-updateQuantity'
+                    label='Guardar cambios'
+                    disabled={(updatedQuantity - quantity) === 0}
+                />
             </div>
             <div className="cart__item-image">
                 <img src={image} alt="" />
