@@ -72,7 +72,7 @@ function Contactanos() {
                 resetForm()
               })
           } else {
-            alert('El formulario no se ha enviado')
+            alert('El formulario no se ha enviado porque hay campos con errores')
           }
         }}
         className='form container'

@@ -34,12 +34,12 @@ function CartItem({_id, name, image, quantity, price}) {
                         quantity={updatedQuantity}
                         increment={() => {
                             increment()
-                            modifyProductQuantity(_id, updatedQuantity + 1)
+                            modifyProductQuantity(_id, updatedQuantity + 1 - quantity)
                         }}
                         decrement={() => {
                             decrement();
                             if (updatedQuantity > 1) {
-                                modifyProductQuantity(_id, updatedQuantity - 1)
+                                modifyProductQuantity(_id, updatedQuantity - 1 - quantity)
                             }
                         }}
                         counterControlStyle='cart__item-quantityControl'
@@ -60,6 +60,7 @@ function CartItem({_id, name, image, quantity, price}) {
                     className='cart__item-deleteBtn'
                     icon={<RiDeleteBin6Line />}
                 />
+                
             </div>
             <div className="cart__item-image">
                 <img src={image} alt="" />

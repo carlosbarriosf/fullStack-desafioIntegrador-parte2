@@ -9,7 +9,6 @@ export const validateStgLength = (stg, minLength, maxLength) => stg.length >= mi
 export const validateAge = (ageFrom, ageTo) => {
     if(ageFrom && ageTo) {
         const isInteger = Number.isInteger(Number(ageFrom)) && Number.isInteger(Number(ageTo))
-        console.log(isInteger)
         if(isInteger) {
             return Number(ageFrom) < Number(ageTo)
         }

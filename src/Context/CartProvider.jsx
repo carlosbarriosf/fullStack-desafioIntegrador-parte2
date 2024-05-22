@@ -26,15 +26,12 @@ function CartProvider({children}) {
         } else {
             localStorage.removeItem('storedCartId');
         }
-        console.log('CartID ahora es: ', cartId);
     }, [cartId]);
 
 
 
     const addProductToCart =  (items) => {
         if(cartId) {
-            console.log('estoy en el update')
-            console.log(items)
             updateCartById(cartId, items)
                 .then(res => {
                     console.log(res)
@@ -45,8 +42,6 @@ function CartProvider({children}) {
         } else {
             postCart(items)
                 .then(res => {
-                    console.log('estoy aca')
-                    console.log(res._id)
                     setCartId(res._id)
                     setCartProductList(res.items)
                 })
@@ -55,29 +50,28 @@ function CartProvider({children}) {
 
     };
 
-    // const modifyProductQuantity = (_id, quantity) => {
-    //     const productToModify = cartProductList.find(existentProduct => existentProduct._id === _id)
-    //     if(productToModify) {
-    //         setCartProductList(cartProductList.map(existentProduct => {
-    //             if (existentProduct._id === _id) {
-    //                 return {
-    //                     ...existentProduct,
-    //                     quantity: quantity,
-    //                     subtotal: Number(existentProduct.price) * quantity
-    //                 }
-    //             }
-    //             return existentProduct
-    //         }))
-    //     }
-    // }
 
-
-    // const removeProductFromCart = _id => setCartProductList(cartProductList.filter(product => product._id !== _id));
+    const modifyProductQuantity = (id, quantity) => {
+        if(quantity !== 0) {
+            console.log(quantity)
+            updateCartById(
+                            cartId,
+                            {items: [{
+                                quantity,
+                                product: id
+                            }]}
+                        )
+                        .then(res => {
+                            console.log(res)
+                            setCartProductList(res.items)
+                        })
+                        .catch(err => console.error(err))
+        }
+    }
 
     const removeProductFromCart = (id, body) => {
         updateCartById(id, body)
             .then(res => {
-                console.log(res)
                 setCartProductList(res.items)
             })
     }
@@ -85,12 +79,9 @@ function CartProvider({children}) {
     const purchaseCart = (id) => {
         updateCartById(id, { purchased: true})
             .then(res => {
-                console.log(res)
                 setCartId();
                 setCartProductList([]);
-                console.log(localStorage.getItem('storedCartId'))
                 localStorage.removeItem('storedCartId')
-                console.log(localStorage.getItem('storedCartId'))
             })
     }
 
@@ -101,8 +92,8 @@ function CartProvider({children}) {
                 cartProductList,
                 addProductToCart,
                 removeProductFromCart,
-                purchaseCart
-                // modifyProductQuantity
+                purchaseCart,
+                modifyProductQuantity
                 }
             }>
             {children}
