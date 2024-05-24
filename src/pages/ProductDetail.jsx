@@ -84,12 +84,10 @@ function ProductDetail() {
                                 type='button'
                                 action={() => {
                                     addProductToCart({
-                                        _id: product._id,
-                                        quantity,
-                                        image: product.image,
-                                        name: product.name,
-                                        price: product.price,
-                                        subtotal: Number(product.price) * quantity
+                                        items: [{
+                                            quantity,
+                                            product: id
+                                        }]
                                     })
                                     if (quantity > 0) {
                                         setMessageVisible(true)
