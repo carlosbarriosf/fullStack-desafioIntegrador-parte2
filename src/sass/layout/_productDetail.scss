@@ -13,7 +13,8 @@
     }
 }
 
-.productDetail{
+.productDetail, .productDetail__skeleton{
+
 
 
     .productDetail__title {
@@ -97,7 +98,7 @@
 
 // /* lg */
 @media (min-width: 768px) {
-    .productDetail {
+    .productDetail, .productDetail__skeleton {
         .productDetail-container {
             display: grid;
             grid-template-columns: 1fr 2fr;
@@ -115,7 +116,7 @@
 
 // /* xl */
 @media (min-width: 1024px) {
-    .productDetail {
+    .productDetail, .productDetail__skeleton {
         width: 1024px;
         margin-left: auto;
         margin-right: auto;
